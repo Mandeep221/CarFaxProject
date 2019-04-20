@@ -2,7 +2,7 @@ package com.msarangal.carfaxproject.data.network;
 
 import com.msarangal.carfaxproject.data.network.model.VehiclesResponse;
 
-import java.util.Observable;
+import io.reactivex.Observable;
 
 /**
  * Created by Mandeep Sarangal on 19,April,2019
@@ -14,6 +14,6 @@ public interface ApiInteractor {
         void onApiFailure(int errorCode, String errorBody);
     }
 
-    void getVehicles(OnGetVehiclesFinishedListener onFinishedListener);
+    Observable<VehiclesResponse> getVehicles(OnGetVehiclesFinishedListener onFinishedListener);
 
 }

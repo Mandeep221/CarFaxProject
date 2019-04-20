@@ -15,5 +15,5 @@ import retrofit2.http.Url;
 public interface ApiInterface {
 
     @GET()
-    Call<VehiclesResponse> getVehicles(@Url String url);
+    Observable<VehiclesResponse> getVehicles(@Url String url);
 }
