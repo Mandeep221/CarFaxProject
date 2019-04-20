@@ -9,5 +9,5 @@ package com.msarangal.carfaxproject.ui.main;
  * It contains methods that are exposed to its Presenter MainPresenter for the communication.
  */
 public interface MainMvpView {
-
+    void showErrorMessage(String message);
 }

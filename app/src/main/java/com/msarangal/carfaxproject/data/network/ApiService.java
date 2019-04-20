@@ -17,28 +17,8 @@ public class ApiService implements ApiInteractor {
 
     @Override
     public Observable<VehiclesResponse> getVehicles(final OnGetVehiclesFinishedListener onFinishedListener) {
-        Log.d("ApiCall", "getVehicles");
         ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
-        Observable<VehiclesResponse> call = apiInterface.getVehicles("https://carfax-for-consumers.firebaseio.com/assignment.json/");
-
-        return call;
-
-//        call.enqueue(new Callback<VehiclesResponse>() {
-//            @Override
-//            public void onResponse(Call<VehiclesResponse> call, Response<VehiclesResponse> response) {
-//                if(response.isSuccessful()){
-//                    // 200
-//                    onFinishedListener.onApiSuccess(response.body());
-//                }else {
-//                    // NOT 200
-//                    onFinishedListener.onApiFailure(response.code(), response.errorBody().toString());
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(Call<VehiclesResponse> call, Throwable t) {
-//                onFinishedListener.onApiFailure(-1, "");
-//            }
-//        });
+        Observable<VehiclesResponse> getVehiclesObservable = apiInterface.getVehicles("https://carfax-for-consumers.firebaseio.com/assignment.json/");
+        return getVehiclesObservable;
     }
 }
