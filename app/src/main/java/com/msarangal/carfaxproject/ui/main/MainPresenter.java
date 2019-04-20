@@ -52,6 +52,7 @@ public class MainPresenter implements MainMvpPresenter, ApiInteractor.OnGetVehic
                         @Override
                         public void onNext(VehiclesResponse vehiclesResponse) {
                             saveInPaperDb(vehiclesResponse);
+                            view.bindVehiclesData(vehiclesResponse);
                         }
 
                         @Override
@@ -98,6 +99,7 @@ public class MainPresenter implements MainMvpPresenter, ApiInteractor.OnGetVehic
         VehiclesResponse vehiclesResponse = Paper.book().read(AppConstants.KEY_PAPER_DB.VEHICLES_API_RESPONSE);
         if (vehiclesResponse != null) {
             view.showErrorMessage("No Internet, Offline data fetched");
+            view.bindVehiclesData(vehiclesResponse);
         }else {
             view.showErrorMessage("No Internet, No Offline data");
         }
