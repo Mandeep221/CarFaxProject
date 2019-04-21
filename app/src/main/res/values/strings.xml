@@ -1,7 +1,16 @@
 <resources>
     <string name="app_name">CarFaxProject</string>
 
-    <!--used as tags for shared element transitions-->
-    <string name="transition_vehicle_photo">photo</string>
-    <string name="transition_call_button">calldealer</string>
+    <string name="location_label">Location</string>
+    <string name="ext_colour_label">Exterior Colour</string>
+    <string name="int_colour_label">Interior Colour</string>
+    <string name="drive_type_label">Drive Type</string>
+    <string name="transmission_label">Transmission</string>
+    <string name="body_style_label">Body Style</string>
+    <string name="engine_label">Engine</string>
+    <string name="fuel_label">Fuel</string>
+
+    <string name="call_dealer_label">Call Dealer</string>
+
+    <string name="no_photo_url_found_msg">Oopsie... \nNo photo Url \nfound for this vehicle</string>
 </resources>

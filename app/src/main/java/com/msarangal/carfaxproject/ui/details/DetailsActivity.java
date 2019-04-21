@@ -3,6 +3,8 @@ package com.msarangal.carfaxproject.ui.details;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -12,6 +14,7 @@ import com.bumptech.glide.Glide;
 import com.msarangal.carfaxproject.R;
 import com.msarangal.carfaxproject.data.network.model.Listing;
 import com.msarangal.carfaxproject.utils.AppConstants;
+import com.msarangal.carfaxproject.utils.CommonUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -21,6 +24,9 @@ import io.paperdb.Paper;
  * Created by Mandeep Sarangal on 19,April,2019
  */
 public class DetailsActivity extends AppCompatActivity {
+
+    @BindView(R.id.ad_toolbar)
+    Toolbar toolbar;
 
     @BindView(R.id.ad_iv_vehicle_photo)
     ImageView ivVehiclePhoto;
@@ -68,6 +74,10 @@ public class DetailsActivity extends AppCompatActivity {
     }
 
     private void setUpViews(){
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("Details Screen");
+
         Listing listing = Paper.book().read(AppConstants.KEY_PAPER_DB.SELECTED_VEHICLE);
         if(listing.getImages() != null){
             Glide.with(DetailsActivity.this)
@@ -78,7 +88,7 @@ public class DetailsActivity extends AppCompatActivity {
         }
 
         tvYearMakeModelTrim.setText(listing.getYear() + " "+ listing.getMake()+ " "+listing.getModel());
-        tvPriceMileage.setText(listing.getCurrentPrice() +" | "+ listing.getMileage());
+        tvPriceMileage.setText("$"+ CommonUtils.getFormattedPrice(listing.getCurrentPrice()) +" | "+ CommonUtils.getFormattedMileage(listing.getMileage())+ " mi");
 
         tvLocation.setText(listing.getDealer().getCity() + ", "+listing.getDealer().getState());
         tvExteriorColour.setText(listing.getExteriorColor());
@@ -89,4 +99,14 @@ public class DetailsActivity extends AppCompatActivity {
         tvEngine.setText(listing.getEngine());
         tvFuel.setText(listing.getFuel());
     }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
 }

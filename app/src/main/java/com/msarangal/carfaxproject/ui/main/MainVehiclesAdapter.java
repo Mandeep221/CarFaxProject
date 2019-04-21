@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.msarangal.carfaxproject.R;
 import com.msarangal.carfaxproject.data.network.model.Listing;
+import com.msarangal.carfaxproject.utils.CommonUtils;
 
 import java.util.List;
 
@@ -31,7 +32,8 @@ public class MainVehiclesAdapter extends RecyclerView.Adapter<MainVehiclesAdapte
     private static final String TAG = MainVehiclesAdapter.class.getSimpleName();
 
     public interface OnItemClickListener {
-        public void onItemClick(View view, int position);
+        void onItemClick(View view, int position);
+        void onCallDealerClick(int position);
     }
 
     OnItemClickListener onItemClickListener;
@@ -40,7 +42,6 @@ public class MainVehiclesAdapter extends RecyclerView.Adapter<MainVehiclesAdapte
         this.mDataSet = dataSet;
         this.mContext = context;
         this.onItemClickListener = onItemClickListener;
-        Log.d("MainVehiclesAdapter", mDataSet.size()+"");
     }
 
     @NonNull
@@ -68,8 +69,8 @@ public class MainVehiclesAdapter extends RecyclerView.Adapter<MainVehiclesAdapte
             Log.d(TAG, "Photo url at position : "+ position + " is null");
         }
 
-        viewHolder.tvYearMake.setText(listing.getYear()+"");
-        viewHolder.tvPriceMileage.setText(listing.getCurrentPrice()+" | "+listing.getMileage());
+        viewHolder.tvYearMake.setText(listing.getYear() + " "+ listing.getMake()+ " "+listing.getModel());
+        viewHolder.tvPriceMileage.setText("$"+ CommonUtils.getFormattedPrice(listing.getCurrentPrice()) +" | "+ CommonUtils.getFormattedMileage(listing.getMileage())+ " mi");
         viewHolder.tvLocation.setText(listing.getDealer().getCity()+ ", "+ listing.getDealer().getState());
     }
 
@@ -106,6 +107,11 @@ public class MainVehiclesAdapter extends RecyclerView.Adapter<MainVehiclesAdapte
         @OnClick(R.id.ilr_cv_container)
         void onItemClick(View view){
             onItemClickListener.onItemClick(view, getAdapterPosition());
+        }
+
+        @OnClick(R.id.ilr_btn_call_dealer)
+        void onCallDealerClick(){
+            onItemClickListener.onCallDealerClick(getAdapterPosition());
         }
     }
 }

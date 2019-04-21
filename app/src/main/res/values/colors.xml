@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorPrimary">#2871C0</color>
+    <color name="colorPrimaryDark">#225999</color>
     <color name="colorAccent">#D81B60</color>
 
-    <color name="colorTextPrimary">#212121</color>
+    <color name="colorTextPrimary">#DE000000</color> <!--DE for 87% opacity-->
+    <color name="colorTextSecondary">#8A000000</color> <!--8A for 54% opacity-->
     <color name="colorDivider">#ABABAB</color>
     <color name="colorWhite">#FFFFFF</color>
+    <color name="colorOffWhite">#F2F2F2</color>
 </resources>

@@ -2,12 +2,14 @@ package com.msarangal.carfaxproject.ui.main;
 
 import android.app.ActivityOptions;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Build;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.transition.Fade;
 import android.util.Log;
 import android.view.View;
@@ -26,10 +28,15 @@ import io.paperdb.Paper;
 
 public class MainActivity extends AppCompatActivity implements MainMvpView {
 
+    private static final String TAG = MainActivity.class.getSimpleName();
+
     private MainPresenter presenter;
 
     @BindView(android.R.id.content)
     View content;
+
+    @BindView(R.id.am_toolbar)
+    Toolbar toolbar;
 
     @BindView(R.id.am_rv_vehicles)
     RecyclerView rvVehicles;
@@ -45,6 +52,9 @@ public class MainActivity extends AppCompatActivity implements MainMvpView {
     }
 
     private void setupViews(){
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Main Screen");
+
         rvVehicles.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
     }
 
@@ -63,6 +73,18 @@ public class MainActivity extends AppCompatActivity implements MainMvpView {
                 Paper.book().write(AppConstants.KEY_PAPER_DB.SELECTED_VEHICLE, vehiclesResponse.getListings().get(position));
                 Intent intent = new Intent(MainActivity.this, DetailsActivity.class);
                 startActivity(intent);
+            }
+
+            @Override
+            public void onCallDealerClick(int position) {
+                String phoneNumber = vehiclesResponse.getListings().get(position).getDealer().getPhone();
+                if(phoneNumber != null){
+//                    Intent callIntent = new Intent(Intent.ACTION_CALL);
+//                    callIntent.setData(Uri.parse("tel:"+ phoneNumber));
+//                    startActivity(callIntent);
+                }else {
+                    Log.d(TAG, "Phone number was null");
+                }
             }
         });
         rvVehicles.setAdapter(adapter);

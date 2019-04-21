@@ -5,14 +5,16 @@
     android:background="@color/colorWhite"
     android:orientation="vertical">
 
+    <include android:id="@+id/ad_toolbar"
+        layout="@layout/toolbar"/>
+
     <ImageView
         android:id="@+id/ad_iv_vehicle_photo"
         android:layout_width="match_parent"
         android:layout_height="300dp"
         android:adjustViewBounds="true"
         android:scaleType="fitXY"
-        android:src="@drawable/placeholder_photo"
-        android:transitionName="@string/transition_vehicle_photo" />
+        android:src="@drawable/placeholder_photo" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -20,21 +22,29 @@
         android:layout_weight="1">
 
         <LinearLayout
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="20dp"
             android:orientation="vertical">
 
             <TextView
+                android:layout_marginTop="20dp"
+                android:textSize="16sp"
                 android:id="@+id/ad_tv_year_make_model_trim"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="2018 Merc Benz c 250"
+                android:fontFamily="@font/vera"
                 android:textColor="@color/colorTextPrimary" />
 
             <TextView
                 android:id="@+id/ad_tv_price_mileage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="$20,000 | 60k mi"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/verabd"
                 android:textColor="@color/colorTextPrimary"
                 android:textSize="20sp" />
 
@@ -50,10 +60,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Vehicle Info"
+                android:fontFamily="@font/vera"
                 android:textColor="@color/colorTextPrimary"
                 android:textSize="18sp" />
 
             <LinearLayout
+                android:layout_marginBottom="20dp"
+                android:layout_marginTop="8dp"
                 android:layout_width="match_parent"
                 android:layout_weight="1"
                 android:orientation="horizontal"
@@ -69,52 +82,62 @@
                         android:id="@+id/ad_tv_location_label"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Location"
-                        android:textColor="@color/colorTextPrimary" />
+                        android:text="@string/location_label"
+                        android:fontFamily="@font/vera"
+                        android:textColor="@color/colorTextSecondary" />
 
                     <TextView
                         android:id="@+id/ad_tv_ext_colour_label"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Exterior Colour"
-                        android:textColor="@color/colorTextPrimary" />
+                        android:text="@string/ext_colour_label"
+                        android:fontFamily="@font/vera"
+                        android:textColor="@color/colorTextSecondary"
+                        />
+
                     <TextView
                         android:id="@+id/ad_tv_int_colour_label"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Interior Colour"
-                        android:textColor="@color/colorTextPrimary" />
+                        android:text="@string/int_colour_label"
+                        android:fontFamily="@font/vera"
+                        android:textColor="@color/colorTextSecondary" />
                     <TextView
                         android:id="@+id/ad_tv_drive_type_label"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Drive Type"
-                        android:textColor="@color/colorTextPrimary" />
+                        android:text="@string/drive_type_label"
+                        android:fontFamily="@font/vera"
+                        android:textColor="@color/colorTextSecondary" />
                     <TextView
                         android:id="@+id/ad_tv_transmission_label"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Transmission"
-                        android:textColor="@color/colorTextPrimary" />
+                        android:text="@string/transmission_label"
+                        android:fontFamily="@font/vera"
+                        android:textColor="@color/colorTextSecondary" />
 
                     <TextView
                         android:id="@+id/ad_tv_body_style_label"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Body Style"
-                        android:textColor="@color/colorTextPrimary" />
+                        android:text="@string/body_style_label"
+                        android:fontFamily="@font/vera"
+                        android:textColor="@color/colorTextSecondary" />
                     <TextView
                         android:id="@+id/ad_tv_engine_label"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Engine"
-                        android:textColor="@color/colorTextPrimary" />
+                        android:text="@string/engine_label"
+                        android:fontFamily="@font/vera"
+                        android:textColor="@color/colorTextSecondary" />
                     <TextView
                         android:id="@+id/ad_tv_Fuel_label"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Fuel"
-                        android:textColor="@color/colorTextPrimary" />
+                        android:text="@string/fuel_label"
+                        android:fontFamily="@font/vera"
+                        android:textColor="@color/colorTextSecondary" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -124,54 +147,62 @@
                     android:layout_height="match_parent">
 
                     <TextView
+                        android:fontFamily="@font/vera"
                         android:id="@+id/ad_tv_location_value"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Location"
+                        android:text="@string/location_label"
                         android:textColor="@color/colorTextPrimary" />
 
                     <TextView
+                        android:fontFamily="@font/vera"
                         android:id="@+id/ad_tv_ext_colour_value"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Exterior Colour"
+                        android:text="@string/ext_colour_label"
                         android:textColor="@color/colorTextPrimary" />
                     <TextView
+                        android:fontFamily="@font/vera"
                         android:id="@+id/ad_tv_int_colour_value"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Interior Colour"
+                        android:text="@string/int_colour_label"
                         android:textColor="@color/colorTextPrimary" />
                     <TextView
+                        android:fontFamily="@font/vera"
                         android:id="@+id/ad_tv_drive_type_value"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Drive Type"
+                        android:text="@string/drive_type_label"
                         android:textColor="@color/colorTextPrimary" />
                     <TextView
+                        android:fontFamily="@font/vera"
                         android:id="@+id/ad_tv_transmission_value"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Transmission"
+                        android:text="@string/transmission_label"
                         android:textColor="@color/colorTextPrimary" />
 
                     <TextView
+                        android:fontFamily="@font/vera"
                         android:id="@+id/ad_tv_body_style_value"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Body Style"
+                        android:text="@string/body_style_label"
                         android:textColor="@color/colorTextPrimary" />
                     <TextView
+                        android:fontFamily="@font/vera"
                         android:id="@+id/ad_tv_engine_value"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Engine"
+                        android:text="@string/engine_label"
                         android:textColor="@color/colorTextPrimary" />
                     <TextView
+                        android:fontFamily="@font/vera"
                         android:id="@+id/ad_tv_fuel_value"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Fuel"
+                        android:text="@string/fuel_label"
                         android:textColor="@color/colorTextPrimary" />
                 </LinearLayout>
             </LinearLayout>
@@ -185,7 +216,9 @@
         android:id="@+id/ad_btn_call_dealer"
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        android:background="@drawable/button_bg_white_with_top_border"
-        android:text="CALL DEALER"
-        android:transitionName="@string/transition_call_button" />
+        android:textAllCaps="true"
+        android:background="@drawable/button_bg_blue"
+        android:text="@string/call_dealer_label"
+        android:textColor="@color/colorWhite"
+        android:fontFamily="@font/verabd" />
 </LinearLayout>
