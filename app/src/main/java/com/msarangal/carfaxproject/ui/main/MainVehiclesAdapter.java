@@ -84,7 +84,7 @@ public class MainVehiclesAdapter extends RecyclerView.Adapter<MainVehiclesAdapte
         @BindView(R.id.ilr_vehicle_photo)
         ImageView ivVehiclePhoto;
 
-        @BindView(R.id.ilr_year_make)
+        @BindView(R.id.ilr_year_make_model)
         TextView tvYearMake;
 
         @BindView(R.id.ilr_price_mileage)

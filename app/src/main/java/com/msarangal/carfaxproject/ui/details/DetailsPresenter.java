@@ -6,12 +6,12 @@ import android.view.View;
 /**
  * Created by Mandeep Sarangal on 19,April,2019
  */
-public class DetailsPresenter {
+public class DetailsPresenter implements DetailsMvpPresenter {
 
-    private View view;
+    private DetailsMvpView view;
     private Context context;
 
-    public DetailsPresenter(Context context, View view){
+    public DetailsPresenter(Context context, DetailsMvpView view){
         this.view = view;
         this.context = context;
     }

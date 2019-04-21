@@ -10,5 +10,4 @@ package com.msarangal.carfaxproject.ui.details;
  */
 
 public interface DetailsMvpPresenter {
-
 }

@@ -1,11 +1,7 @@
 package com.msarangal.carfaxproject.ui.main;
 
-import android.app.ActivityOptions;
 import android.content.Intent;
-import android.net.Uri;
-import android.os.Build;
 import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -13,12 +9,11 @@ import android.support.v7.widget.Toolbar;
 import android.transition.Fade;
 import android.util.Log;
 import android.view.View;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import com.msarangal.carfaxproject.R;
 import com.msarangal.carfaxproject.data.network.ApiService;
 import com.msarangal.carfaxproject.data.network.model.VehiclesResponse;
+import com.msarangal.carfaxproject.ui.base.BaseActivity;
 import com.msarangal.carfaxproject.ui.details.DetailsActivity;
 import com.msarangal.carfaxproject.utils.AppConstants;
 
@@ -26,7 +21,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.paperdb.Paper;
 
-public class MainActivity extends AppCompatActivity implements MainMvpView {
+public class MainActivity extends BaseActivity implements MainMvpView {
 
     private static final String TAG = MainActivity.class.getSimpleName();
 
@@ -41,6 +36,9 @@ public class MainActivity extends AppCompatActivity implements MainMvpView {
     @BindView(R.id.am_rv_vehicles)
     RecyclerView rvVehicles;
 
+    String[] perms = {"android.permission.CALL_PHONE"};
+    private static final int permsRequestCode = 200;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,9 +49,9 @@ public class MainActivity extends AppCompatActivity implements MainMvpView {
         presenter.getVehicles();
     }
 
-    private void setupViews(){
+    private void setupViews() {
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Main Screen");
+        getSupportActionBar().setTitle(getString(R.string.main_screen_title));
 
         rvVehicles.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
     }
@@ -61,7 +59,7 @@ public class MainActivity extends AppCompatActivity implements MainMvpView {
     @Override
     public void showErrorMessage(String message) {
         Snackbar.make(content, message,
-                Snackbar.LENGTH_LONG)
+                6000)
                 .show();
     }
 
@@ -78,11 +76,9 @@ public class MainActivity extends AppCompatActivity implements MainMvpView {
             @Override
             public void onCallDealerClick(int position) {
                 String phoneNumber = vehiclesResponse.getListings().get(position).getDealer().getPhone();
-                if(phoneNumber != null){
-//                    Intent callIntent = new Intent(Intent.ACTION_CALL);
-//                    callIntent.setData(Uri.parse("tel:"+ phoneNumber));
-//                    startActivity(callIntent);
-                }else {
+                if (phoneNumber != null) {
+                    requestForRuntimePermissions(phoneNumber);
+                } else {
                     Log.d(TAG, "Phone number was null");
                 }
             }

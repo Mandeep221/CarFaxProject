@@ -13,7 +13,7 @@ import retrofit2.converter.moshi.MoshiConverterFactory;
 public class ApiClient{
 
     private static Retrofit retrofit;
-    private static final String TARGET_URL = "https://carfax-for-consumers.firebaseio.com/assignment.json/";
+    private static final String BASE_URL = "https://carfax-for-consumers.firebaseio.com/";
 
     public static Retrofit getClient(){
         OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
@@ -31,7 +31,7 @@ public class ApiClient{
 
         if (retrofit == null){
             retrofit = new Retrofit.Builder()
-                    .baseUrl(TARGET_URL)
+                    .baseUrl(BASE_URL)
                     .addConverterFactory
                             (MoshiConverterFactory.create())
                     .addCallAdapterFactory(RxJava2CallAdapterFactory.create())

@@ -23,7 +23,7 @@ public class ApiService implements ApiInteractor {
     @Override
     public void getVehicles(final OnGetVehiclesFinishedListener onFinishedListener) {
         ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
-        Observable<VehiclesResponse> getVehiclesObservable = apiInterface.getVehicles("https://carfax-for-consumers.firebaseio.com/assignment.json/");
+        Observable<VehiclesResponse> getVehiclesObservable = apiInterface.getVehicles();
 
         getVehiclesObservable.subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())

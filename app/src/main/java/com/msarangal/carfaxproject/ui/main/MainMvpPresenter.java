@@ -9,6 +9,4 @@ package com.msarangal.carfaxproject.ui.main;
  * It contains methods that are exposed to its View MainActivity for the communication.
  */
 public interface MainMvpPresenter {
-
-    void onClickCallDealer();
 }

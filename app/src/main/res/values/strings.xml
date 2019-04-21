@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">CarFaxProject</string>
+    <string name="main_screen_title">Main Screen</string>
+    <string name="details_screen_title">Details Screen</string>
 
     <string name="location_label">Location</string>
     <string name="ext_colour_label">Exterior Colour</string>
@@ -11,6 +13,9 @@
     <string name="fuel_label">Fuel</string>
 
     <string name="call_dealer_label">Call Dealer</string>
-
     <string name="no_photo_url_found_msg">Oopsie... \nNo photo Url \nfound for this vehicle</string>
+
+    <string name="no_internet">No Internet Connection</string>
+    <string name="no_internet_offline_data_fetched">No Internet, Offline data fetched from cache</string>
+    <string name="no_internet_no_cache">No Internet, Cache empty: Please enable mobile data and restart the app</string>
 </resources>

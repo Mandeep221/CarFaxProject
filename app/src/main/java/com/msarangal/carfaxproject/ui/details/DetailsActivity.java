@@ -13,17 +13,21 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.msarangal.carfaxproject.R;
 import com.msarangal.carfaxproject.data.network.model.Listing;
+import com.msarangal.carfaxproject.ui.base.BaseActivity;
 import com.msarangal.carfaxproject.utils.AppConstants;
 import com.msarangal.carfaxproject.utils.CommonUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import io.paperdb.Paper;
 
 /**
  * Created by Mandeep Sarangal on 19,April,2019
  */
-public class DetailsActivity extends AppCompatActivity {
+public class DetailsActivity extends BaseActivity implements DetailsMvpView {
+
+    private DetailsPresenter presenter;
 
     @BindView(R.id.ad_toolbar)
     Toolbar toolbar;
@@ -70,16 +74,17 @@ public class DetailsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_details);
         ButterKnife.bind(this);
 
+        presenter = new DetailsPresenter(this, this);
         setUpViews();
     }
 
-    private void setUpViews(){
+    private void setUpViews() {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("Details Screen");
+        getSupportActionBar().setTitle(getString(R.string.details_screen_title));
 
         Listing listing = Paper.book().read(AppConstants.KEY_PAPER_DB.SELECTED_VEHICLE);
-        if(listing.getImages() != null){
+        if (listing.getImages() != null) {
             Glide.with(DetailsActivity.this)
                     .load(listing.getImages().getFirstPhoto().getLarge())
                     .centerCrop()
@@ -87,10 +92,10 @@ public class DetailsActivity extends AppCompatActivity {
                     .into(ivVehiclePhoto);
         }
 
-        tvYearMakeModelTrim.setText(listing.getYear() + " "+ listing.getMake()+ " "+listing.getModel());
-        tvPriceMileage.setText("$"+ CommonUtils.getFormattedPrice(listing.getCurrentPrice()) +" | "+ CommonUtils.getFormattedMileage(listing.getMileage())+ " mi");
+        tvYearMakeModelTrim.setText(listing.getYear() + " " + listing.getMake() + " " + listing.getModel());
+        tvPriceMileage.setText("$" + CommonUtils.getFormattedPrice(listing.getCurrentPrice()) + " | " + CommonUtils.getFormattedMileage(listing.getMileage()) + " mi");
 
-        tvLocation.setText(listing.getDealer().getCity() + ", "+listing.getDealer().getState());
+        tvLocation.setText(listing.getDealer().getCity() + ", " + listing.getDealer().getState());
         tvExteriorColour.setText(listing.getExteriorColor());
         tvInteriorColour.setText(listing.getInteriorColor());
         tvDriveType.setText(listing.getDrivetype());
@@ -109,4 +114,10 @@ public class DetailsActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    @OnClick(R.id.ad_btn_call_dealer)
+    void onClickCallDealer() {
+        Listing listing = Paper.book().read(AppConstants.KEY_PAPER_DB.SELECTED_VEHICLE);
+        if (listing != null)
+            requestForRuntimePermissions(listing.getDealer().getPhone());
+    }
 }
