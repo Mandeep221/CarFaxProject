@@ -16,5 +16,6 @@ public final class AppConstants {
 
     public static final class KEY_PAPER_DB {
         public static final String VEHICLES_API_RESPONSE = "vehicles_api_response";
+        public static final String SELECTED_VEHICLE = "selected_vehicle";
     }
 }

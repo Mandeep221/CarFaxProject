@@ -19,6 +19,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * Created by Mandeep Sarangal on 20,April,2019
@@ -29,9 +30,16 @@ public class MainVehiclesAdapter extends RecyclerView.Adapter<MainVehiclesAdapte
     Context mContext;
     private static final String TAG = MainVehiclesAdapter.class.getSimpleName();
 
-    public MainVehiclesAdapter(List<Listing> dataSet, Context context){
+    public interface OnItemClickListener {
+        public void onItemClick(View view, int position);
+    }
+
+    OnItemClickListener onItemClickListener;
+
+    public MainVehiclesAdapter(List<Listing> dataSet, Context context, OnItemClickListener onItemClickListener){
         this.mDataSet = dataSet;
         this.mContext = context;
+        this.onItemClickListener = onItemClickListener;
         Log.d("MainVehiclesAdapter", mDataSet.size()+"");
     }
 
@@ -93,6 +101,11 @@ public class MainVehiclesAdapter extends RecyclerView.Adapter<MainVehiclesAdapte
         public MainVehicleViewHolder(@NonNull View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
+        }
+
+        @OnClick(R.id.ilr_cv_container)
+        void onItemClick(View view){
+            onItemClickListener.onItemClick(view, getAdapterPosition());
         }
     }
 }

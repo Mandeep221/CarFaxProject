@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">CarFaxProject</string>
+
+    <!--used as tags for shared element transitions-->
+    <string name="transition_vehicle_photo">photo</string>
+    <string name="transition_call_button">calldealer</string>
 </resources>

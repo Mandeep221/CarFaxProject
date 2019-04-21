@@ -14,6 +14,6 @@ public interface ApiInteractor {
         void onApiFailure(int errorCode, String errorBody);
     }
 
-    Observable<VehiclesResponse> getVehicles(OnGetVehiclesFinishedListener onFinishedListener);
+    void getVehicles(OnGetVehiclesFinishedListener onFinishedListener);
 
 }

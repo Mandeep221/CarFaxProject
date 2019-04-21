@@ -37,38 +37,9 @@ public class MainPresenter implements MainMvpPresenter, ApiInteractor.OnGetVehic
     }
 
     public void getVehicles() {
-
         if (NetworkUtils.isNetworkConnected(context)) {
             // make api call
-            Observable<VehiclesResponse> observable = apiInteractor.getVehicles(this);
-            observable.subscribeOn(Schedulers.newThread())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(new Observer<VehiclesResponse>() {
-                        @Override
-                        public void onSubscribe(Disposable d) {
-
-                        }
-
-                        @Override
-                        public void onNext(VehiclesResponse vehiclesResponse) {
-                            saveInPaperDb(vehiclesResponse);
-                            view.bindVehiclesData(vehiclesResponse);
-                        }
-
-                        @Override
-                        public void onError(Throwable e) {
-                            if (e instanceof HttpException) {
-                                view.showErrorMessage("Error code : " + ((HttpException) e).code());
-                            } else {
-                                view.showErrorMessage(e.toString());
-                            }
-                        }
-
-                        @Override
-                        public void onComplete() {
-
-                        }
-                    });
+            apiInteractor.getVehicles(this);
         } else {
             view.showErrorMessage("No Internet Connection");
             fetchOfflineData();
@@ -82,12 +53,13 @@ public class MainPresenter implements MainMvpPresenter, ApiInteractor.OnGetVehic
 
     @Override
     public void onApiSuccess(VehiclesResponse vehiclesResponse) {
-        Log.d("ApiCall", vehiclesResponse.getListings().size() + "");
+        saveInPaperDb(vehiclesResponse);
+        view.bindVehiclesData(vehiclesResponse);
     }
 
     @Override
     public void onApiFailure(int errorCode, String errorBody) {
-
+        view.showErrorMessage("Error Code : " + errorCode +" --> "+errorBody);
     }
 
     // Api response saved for offline support
