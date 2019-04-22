@@ -2,7 +2,7 @@
     <android.support.v7.widget.CardView
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/ilr_cv_container"
-        android:layout_marginBottom="20dp"
+        android:layout_marginTop="20dp"
         android:layout_width="match_parent"
         android:clickable="true"
         android:background="?android:selectableItemBackground"
@@ -76,9 +76,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
                     android:textAllCaps="true"
+                    style="?android:selectableItemBackground"
                     android:fontFamily="@font/verabd"
                     android:textColor="@color/colorPrimary"
-                    android:background="@drawable/button_bg_white_with_top_border"
+                    android:background="@drawable/button_bg_white_selector"
                     android:text="@string/call_dealer_label" />
 
             </LinearLayout>

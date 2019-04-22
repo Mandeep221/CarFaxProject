@@ -217,7 +217,7 @@
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:textAllCaps="true"
-        android:background="@drawable/button_bg_blue"
+        android:background="@drawable/button_bg_blue_selector"
         android:text="@string/call_dealer_label"
         android:textColor="@color/colorWhite"
         android:fontFamily="@font/verabd" />
